@@ -23,8 +23,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '.railway.app',
-    'www.meet-bruce.com',
-    'meet-bruce.com',
+    'www.meetbruce.co.uk',
+    'meetbruce.co.uk',
 ]
 
 
@@ -145,6 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CSRF settings
 CSRF_TRUSTED_ORIGINS = [
     'https://*.railway.app',
-    'https://www.meet-bruce.com',
-    'https://meet-bruce.com',
+    'https://www.meetbruce.co.uk',
+    'https://meetbruce.co.uk',
 ]
