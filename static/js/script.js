@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "Until now, there hasn't been anything for tenants",
                 "Hi, I'm Bruce, the world's first AI-powered Tenant Advocate.",
                 "I'm here to help you navigate your landlord relationship.",
-                "Starting May 1, 2026, the Renters' Rights Act will shake up the English rental market.",
+                "Starting 1 May 2026, the Renters' Rights Act will shake up the English rental market.",
                 "You'll gain new powers to challenge unfair practices!",
                 "My mission is to help you tackle rogue landlords.",
                 "I can help you:",
