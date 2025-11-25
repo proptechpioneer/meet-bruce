@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
+from django.http import HttpResponse
+import logging
 from .models import EarlySignup
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -48,3 +52,34 @@ def signup_view(request):
             return render(request, 'signup.html')
     
     return render(request, 'signup.html')
+
+
+def honeypot_admin(request):
+    """Honeypot for fake admin page - logs attempted intrusions."""
+    ip_address = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR', 'Unknown'))
+    user_agent = request.META.get('HTTP_USER_AGENT', 'Unknown')
+    
+    logger.warning(
+        f"Honeypot triggered - IP: {ip_address}, User-Agent: {user_agent}, "
+        f"Path: {request.path}, Method: {request.method}"
+    )
+    
+    # Return a fake admin login page to waste attacker's time
+    return HttpResponse(
+        """
+        <!DOCTYPE html>
+        <html>
+        <head><title>Log in | Django site admin</title></head>
+        <body>
+        <h1>Django administration</h1>
+        <p>Please enter your username and password.</p>
+        <form method="post" action="">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Log in</button>
+        </form>
+        </body>
+        </html>
+        """,
+        status=200
+    )
