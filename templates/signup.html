@@ -1,0 +1,370 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Your Interest | Meet Bruce</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/icon.png' %}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Anek Latin', 'Inter', Arial, Helvetica, sans-serif;
+            background-color: #f9fafb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Logo Header */
+        .logo-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-header img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Main Container */
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 2.5rem;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* Messages */
+        .messages {
+            margin-bottom: 1.5rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .message.success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .message.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .message.warning {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+
+        label .required {
+            color: #ef4444;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 0.125rem;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-label {
+            font-size: 0.875rem;
+            color: #374151;
+            line-height: 1.5;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-label .required {
+            color: #ef4444;
+        }
+
+        .checkbox-label a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Back Link */
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .back-link a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Success Message */
+        .success-display {
+            display: none;
+            text-align: center;
+        }
+
+        .success-display.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-display h2 {
+            font-size: 1.5rem;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-display p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .logo-header img {
+                height: 50px;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+                border-radius: 16px;
+            }
+
+            .form-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo Header -->
+    <div class="logo-header">
+        <img src="{% static 'images/logo.png' %}" alt="Bruce Logo">
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Register Your Interest</h1>
+                <p>Be the first to know when Bruce launches</p>
+            </div>
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if not success %}
+            <form method="post" action="{% url 'signup' %}">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Your name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="postcode">Postcode (Optional)</label>
+                    <input 
+                        type="text" 
+                        id="postcode" 
+                        name="postcode" 
+                        placeholder="e.g. SW1A 1AA"
+                    >
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-container">
+                        <input 
+                            type="checkbox" 
+                            id="gdpr_consent" 
+                            name="gdpr_consent"
+                            required
+                        >
+                        <label for="gdpr_consent" class="checkbox-label">
+                            I agree to the processing of my personal data for marketing purposes and to receive updates about Bruce. <span class="required">*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Register Interest
+                </button>
+            </form>
+
+            <div class="back-link">
+                <a href="{% url 'index' %}">← Back to home</a>
+            </div>
+            {% else %}
+            <div class="success-display show">
+                <div class="success-icon">✅</div>
+                <h2>Thank You!</h2>
+                <p>We'll be in touch soon with updates about Bruce.</p>
+                <a href="{% url 'index' %}" class="submit-button" style="display: inline-block; text-decoration: none;">
+                    Back to Home
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
