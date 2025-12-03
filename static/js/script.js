@@ -15,22 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             console.log('Starting typewriter...');            // Pre-marketing message lines
             const lines = [
-                "Hey! Did you know most landlords use smart software to manage their properties?",
-                "These tools help them cut costs and push rents up to maximise profits.",
-                "But what about you, the renter?",
-                "Until now, there hasn't been anything for tenants",
-                "Hi, I'm Bruce, the world's first AI-powered Tenant Advocate.",
-                "I'm here to help you navigate your landlord relationship.",
-                "Starting 1 May 2026, the Renters' Rights Act will shake up the English rental market.",
-                "You'll gain new powers to challenge unfair practices!",
-                "My mission is to help you tackle rogue landlords.",
-                "I can help you:",
-                "✅ Secure a fairer rent.",
-                "✅ Coordinate repairs and escalate issues.",
-                "✅ Monitor rent increases to ensure the best deal.",
-                "✅ Understand your rights.",
-                "Want to be first in line when Bruce launches?",
-                "Register your interest below! 🚀"
+                "Landlords have smart software to squeeze every penny from your rent.",
+                "You? You've had nothing… until now.",
+                "I'm Bruce – the world's first AI Tenant Advocate that fights for YOU.",
+                "Starting May 2026, the new Renters' Rights Act hands you the power.",
+                "I can help you use them.",
+                "Lower your rent",
+                "Force repairs",
+                "Beat rogue landlords",
+                "Save thousands – and finally get on the housing ladder.",
+                "Stop paying their profits.",
+                "Start building your future."
             ];
             
             // Timing settings
